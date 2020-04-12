@@ -12,8 +12,8 @@ export default class PortfolioContainer extends Component {
     // we are going to loop over these items using map
     const data = ["Quip", "Eventbrite", "Ministry Saves"];
     return data.map((item) => {
-      // we have to have a return in map
-      return <PortfolioItem />;
+      // we have to have a return in map , we can also give access to other props such as urls
+      return <PortfolioItem title={item} url="google.com" />;
     });
     // make sure you add the parenthesis at the end if you want your function to run immediately
   }
