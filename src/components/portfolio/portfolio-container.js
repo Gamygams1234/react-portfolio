@@ -10,10 +10,11 @@ export default class PortfolioContainer extends Component {
       pageTitle: "Welcome to my portfolio",
       isLoading: false,
       data: [
-        { title: "Quip", category: "eCommerce" },
-        { title: "Eventbrite", category: "scheduling" },
-        { title: "Ministry Saves", category: "enterprise" },
-        { title: "Swing Away", category: "eCommerce" },
+        // putting in the slug for the URL
+        { title: "Quip", category: "eCommerce", slug: "quip" },
+        { title: "Eventbrite", category: "scheduling", slug: "eventbrite" },
+        { title: "Ministry Safe", category: "enterprise", slug: "ministry-safe" },
+        { title: "Swing Away", category: "eCommerce", slug: "swing-away" },
       ],
     };
     this.handleFilter = this.handleFilter.bind(this);
@@ -24,7 +25,7 @@ export default class PortfolioContainer extends Component {
 
     return this.state.data.map((item) => {
       // here we are calling our item throught the state
-      return <PortfolioItem title={item.title} url="google.com" />;
+      return <PortfolioItem title={item.title} url={"google.com"} slug={item.slug} />;
     });
     // make sure you add the parenthesis at the end if you want your function to run immediately
   }
