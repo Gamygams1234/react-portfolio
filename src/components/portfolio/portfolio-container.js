@@ -8,7 +8,7 @@ export default class PortfolioContainer extends Component {
     // this will aways be the initial state of the application
     this.state = {
       pageTitle: "Welcome to my portfolio",
-      isLoading: MediaStreamTrackAudioSourceNode,
+      isLoading: false,
       data: [
         { title: "Quip", category: "eCommerce" },
         { title: "Eventbrite", category: "scheduling" },
