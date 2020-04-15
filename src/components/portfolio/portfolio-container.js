@@ -8,6 +8,7 @@ export default class PortfolioContainer extends Component {
     // this will aways be the initial state of the application
     this.state = {
       pageTitle: "Welcome to my portfolio",
+      isLoading: MediaStreamTrackAudioSourceNode,
       data: [
         { title: "Quip", category: "eCommerce" },
         { title: "Eventbrite", category: "scheduling" },
@@ -35,7 +36,11 @@ export default class PortfolioContainer extends Component {
       }),
     });
   }
+  // running only if state is not loading
   render() {
+    if (this.state.isLoading) {
+      return <div>Loading...</div>;
+    }
     return (
       <div>
         <h2>{this.state.pageTitle}</h2>
