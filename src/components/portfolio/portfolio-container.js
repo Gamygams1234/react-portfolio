@@ -8,10 +8,14 @@ export default class PortfolioContainer extends Component {
     // this will aways be the initial state of the application
     this.state = {
       pageTitle: "Welcome to my portfolio",
-      data: [{ title: "Quip" }, { title: "Eventbrite" }, { title: "Ministry Saves" }],
+      data: [
+        { title: "Quip", category: "eCommerce" },
+        { title: "Eventbrite", category: "scheduling" },
+        { title: "Ministry Saves", category: "enterprise" },
+        { title: "Swing Away", category: "eCommerce" },
+      ],
     };
-    // you can either use an arrow function like Net Ninja or you can bind this at the end of your code
-    this.handlePageTitleUpdate = this.handlePageTitleUpdate.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
   portfolioItems() {
@@ -23,19 +27,41 @@ export default class PortfolioContainer extends Component {
     });
     // make sure you add the parenthesis at the end if you want your function to run immediately
   }
-  handlePageTitleUpdate() {
+  // with this we are going through the state and filtering out what the category returns
+  handleFilter(filter) {
     this.setState({
-      pageTitle: "John Cena Sucks",
+      data: this.state.data.filter((item) => {
+        return item.category === filter;
+      }),
     });
   }
   render() {
     return (
       <div>
         <h2>{this.state.pageTitle}</h2>
+        <button
+          onClick={() => {
+            this.handleFilter("eCommerce");
+          }}
+        >
+          eCommerce
+        </button>
+        <button
+          onClick={() => {
+            this.handleFilter("scheduling");
+          }}
+        >
+          scheduling
+        </button>
+        <button
+          onClick={() => {
+            this.handleFilter("enterprise");
+          }}
+        >
+          enterpise
+        </button>
 
         {this.portfolioItems()}
-        <hr />
-        <button onClick={this.handlePageTitleUpdate}>Change Title</button>
       </div>
     );
   }
