@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import moment from "moment";
+import axios from "axios";
 // the name will be router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -12,7 +13,24 @@ import PortfolioDetail from "./portfolio/portfolio-detail";
 import NoMatch from "./pages/no-match";
 
 export default class App extends Component {
+  constructor() {
+    super();
+    this.getPortfolioItems = this.getPortfolioItems.bind(this);
+  }
+  getPortfolioItems() {
+    axios
+      .get("https://gamyburgos.devcamp.space/portfolio/portfolio_items")
+      .then((response) => {
+        // handle success
+        console.log(response.data.portfolio_items);
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      });
+  }
   render() {
+    this.getPortfolioItems();
     return (
       <div className="app">
         <Router>
