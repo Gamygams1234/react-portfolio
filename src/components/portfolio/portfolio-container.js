@@ -10,6 +10,8 @@ export default class PortfolioContainer extends Component {
       pageTitle: "Welcome to my portfolio",
       data: [{ title: "Quip" }, { title: "Eventbrite" }, { title: "Ministry Saves" }],
     };
+    // you can either use an arrow function like Net Ninja or you can bind this at the end of your code
+    this.handlePageTitleUpdate = this.handlePageTitleUpdate.bind(this);
   }
 
   portfolioItems() {
@@ -21,12 +23,19 @@ export default class PortfolioContainer extends Component {
     });
     // make sure you add the parenthesis at the end if you want your function to run immediately
   }
+  handlePageTitleUpdate() {
+    this.setState({
+      pageTitle: "John Cena Sucks",
+    });
+  }
   render() {
     return (
       <div>
         <h2>{this.state.pageTitle}</h2>
 
         {this.portfolioItems()}
+        <hr />
+        <button onClick={this.handlePageTitleUpdate}>Change Title</button>
       </div>
     );
   }
