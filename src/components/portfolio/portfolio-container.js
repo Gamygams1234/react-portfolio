@@ -10,23 +10,19 @@ export default class PortfolioContainer extends Component {
     this.state = {
       pageTitle: "Welcome to my portfolio",
       isLoading: false,
-      data: [
-        // putting in the slug for the URL
-        { title: "Quip", category: "eCommerce", slug: "quip" },
-        { title: "Eventbrite", category: "scheduling", slug: "eventbrite" },
-        { title: "Ministry Safe", category: "enterprise", slug: "ministry-safe" },
-        { title: "Swing Away", category: "eCommerce", slug: "swing-away" },
-      ],
+      data: [],
     };
     this.handleFilter = this.handleFilter.bind(this);
-    this.getPortfolioItems = this.getPortfolioItems.bind(this);
   }
   getPortfolioItems() {
     axios
       .get("https://gamyburgos.devcamp.space/portfolio/portfolio_items")
       .then((response) => {
         // handle success
-        console.log(response.data.portfolio_items);
+
+        this.setState({
+          data: response.data.portfolio_items,
+        });
       })
       .catch((error) => {
         // handle error
@@ -34,11 +30,11 @@ export default class PortfolioContainer extends Component {
       });
   }
   portfolioItems() {
-    // we are going to loop over these items using map
+    // // we are going to loop over these items using map
     this.getPortfolioItems();
     return this.state.data.map((item) => {
       // here we are calling our item throught the state
-      return <PortfolioItem title={item.title} url={"google.com"} slug={item.slug} />;
+      return <PortfolioItem title={item.name} url={item.url} slug={item.id} />;
     });
     // make sure you add the parenthesis at the end if you want your function to run immediately
   }
@@ -51,6 +47,10 @@ export default class PortfolioContainer extends Component {
     });
   }
   // running only if state is not loading
+
+  componentDidMount() {
+    this.getPortfolioItems;
+  }
   render() {
     if (this.state.isLoading) {
       return <div>Loading...</div>;
