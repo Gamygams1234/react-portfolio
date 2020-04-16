@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PortfolioItem from "./portfolio-item";
+import axios from "axios";
 
 export default class PortfolioContainer extends Component {
   constructor() {
@@ -18,11 +19,23 @@ export default class PortfolioContainer extends Component {
       ],
     };
     this.handleFilter = this.handleFilter.bind(this);
+    this.getPortfolioItems = this.getPortfolioItems.bind(this);
   }
-
+  getPortfolioItems() {
+    axios
+      .get("https://gamyburgos.devcamp.space/portfolio/portfolio_items")
+      .then((response) => {
+        // handle success
+        console.log(response.data.portfolio_items);
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      });
+  }
   portfolioItems() {
     // we are going to loop over these items using map
-
+    this.getPortfolioItems();
     return this.state.data.map((item) => {
       // here we are calling our item throught the state
       return <PortfolioItem title={item.title} url={"google.com"} slug={item.slug} />;
