@@ -14,6 +14,13 @@ export default class PortfolioContainer extends Component {
     };
     this.handleFilter = this.handleFilter.bind(this);
   }
+  handleFilter(filter) {
+    this.setState({
+      data: this.state.data.filter((item) => {
+        return item.category === filter;
+      }),
+    });
+  }
   getPortfolioItems() {
     axios
       .get("https://gamyburgos.devcamp.space/portfolio/portfolio_items")
@@ -31,25 +38,23 @@ export default class PortfolioContainer extends Component {
   }
   portfolioItems() {
     // // we are going to loop over these items using map
-    this.getPortfolioItems();
+    // this.getPortfolioItems();
+
     return this.state.data.map((item) => {
       // here we are calling our item throught the state
+      console.log("portfolio item", item);
+
       return <PortfolioItem key={item.id} title={item.name} url={item.url} slug={item.id} />;
     });
     // make sure you add the parenthesis at the end if you want your function to run immediately
   }
   // with this we are going through the state and filtering out what the category returns
-  handleFilter(filter) {
-    this.setState({
-      data: this.state.data.filter((item) => {
-        return item.category === filter;
-      }),
-    });
-  }
+
   // running only if state is not loading
 
   componentDidMount() {
-    this.getPortfolioItems;
+    this.getPortfolioItems(); // putting the getPortfolioItems in component did mount
+    // we want to get it ath the start nd load it once
   }
   render() {
     if (this.state.isLoading) {
