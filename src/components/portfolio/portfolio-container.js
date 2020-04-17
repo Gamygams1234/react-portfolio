@@ -36,21 +36,24 @@ export default class PortfolioContainer extends Component {
         console.log(error);
       });
   }
-  portfolioItems() {
-    // // we are going to loop over these items using map
-    // this.getPortfolioItems();
 
+  // here this is how we are writing down the things that we will need in our application
+  portfolioItems() {
+    // data that we'll need :
+    // background image:thumb_image_url
+    // descrioption:description
+    // logo :logo
+    // id :id
+    // slug
+    // This is all of the keys we have access to in our items
+    // ["id", "name", "description", "url", "category", "position", "thumb_image_url", "banner_image_url", "logo_url", "column_names_merged_with_images"]
     return this.state.data.map((item) => {
-      // here we are calling our item throught the state
+      //debugger; We get the informathin by putting the debugger here and then we do Object.keys(item)
       console.log("portfolio item", item);
 
       return <PortfolioItem key={item.id} title={item.name} url={item.url} slug={item.id} />;
     });
-    // make sure you add the parenthesis at the end if you want your function to run immediately
   }
-  // with this we are going through the state and filtering out what the category returns
-
-  // running only if state is not loading
 
   componentDidMount() {
     this.getPortfolioItems(); // putting the getPortfolioItems in component did mount
