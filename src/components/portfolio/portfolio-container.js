@@ -4,9 +4,8 @@ import axios from "axios";
 
 export default class PortfolioContainer extends Component {
   constructor() {
-    // hanve to hit super for the constructor to work
     super();
-    // this will aways be the initial state of the application
+
     this.state = {
       pageTitle: "Welcome to my portfolio",
       isLoading: false,
@@ -39,19 +38,12 @@ export default class PortfolioContainer extends Component {
 
   // here this is how we are writing down the things that we will need in our application
   portfolioItems() {
-    // data that we'll need :
-    // background image:thumb_image_url
-    // descrioption:description
-    // logo :logo
-    // id :id
-    // slug
     // This is all of the keys we have access to in our items
     // ["id", "name", "description", "url", "category", "position", "thumb_image_url", "banner_image_url", "logo_url", "column_names_merged_with_images"]
     return this.state.data.map((item) => {
       //debugger; We get the informathin by putting the debugger here and then we do Object.keys(item)
-      console.log("portfolio item", item);
 
-      return <PortfolioItem key={item.id} title={item.name} url={item.url} slug={item.id} />;
+      return <PortfolioItem key={item.id} item={item} />;
     });
   }
 
