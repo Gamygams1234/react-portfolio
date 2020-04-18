@@ -1,0 +1,7 @@
+.portfolio-items-wrapper {
+  display: grid; // here we are putting the didplay as a grid
+  grid-template-columns: 1fr 1fr 1fr;
+  .portfolio-item-wrapper {
+    position: relative;
+  }
+}

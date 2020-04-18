@@ -10,7 +10,7 @@ export default function (props) {
   // slug
   const { id, description, thumb_image_url, logo } = props.item;
   return (
-    <div>
+    <div className="portfolio-item-wrapper">
       <img src={thumb_image_url} alt="background" />
       <img src={logo} alt="logo" />
       <div>{description}</div>

@@ -79,8 +79,8 @@ export default class PortfolioContainer extends Component {
         >
           enterpise
         </button>
-
-        {this.portfolioItems()}
+        {/*setting up a wrapper for our protfilio items*/}
+        <div className="portfolio-items-wrapper">{this.portfolioItems()}</div>
       </div>
     );
   }
