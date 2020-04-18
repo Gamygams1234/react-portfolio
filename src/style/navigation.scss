@@ -1,31 +1,39 @@
 .nav-wrapper {
-  // puttihng a flex container making the items inline
   display: flex;
-  //   setting the space in between the two elements
   justify-content: space-between;
-  // puttong the padding in the elements
   padding: 30px;
 
   .left-side {
-    // making sure our links are side to side
     display: flex;
   }
+
   .nav-link-wrapper {
     height: 22px;
-    // puttiong our bottom border right now, then we can add a hover later on
     border-bottom: 1px solid transparent;
     transition: 0.5s ease-in-out;
+    margin-right: 20px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+
     a {
+      display: block; // making the display block so I can have control over it
+      height: 22px; // changint the height to 22px
       color: $grey;
       text-decoration: none;
       &:hover {
         color: black;
+        border-bottom: 1px solid black;
       }
     }
-    // this is adding our hover in the Navlink wrapper
+
     &:hover {
-      color: black;
       border-bottom: 1px solid black;
+    }
+
+    .nav-link-active {
+      display: block;
+      border-bottom: 1px solid black;
+      color: black;
     }
   }
 }
