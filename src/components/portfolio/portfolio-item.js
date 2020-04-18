@@ -1,31 +1,42 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { relativeTimeThreshold } from "moment";
 // this is telling us that we are going to receive props
-export default function (props) {
-  // data that we'll need :
-  // background image:thumb_image_url
-  // description:description
-  // logo :logo
-  // id :id
-  // slug
-  const { id, description, thumb_image_url, logo_url } = props.item;
-  return (
-    <div className="portfolio-item-wrapper">
-      <div
-        className="portfolio-img-background"
-        style={{
-          backgroundImage: "url(" + thumb_image_url + ")",
-        }}
-      />
-      {/*here we pass the style in two sets of curly brackets */}
+export default class PortfolioItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      portfolioItemClass: "",
+    };
+  }
+  handleMouseEnter(e) {
+    this.setState({ portfolioItemClass: "image-blur" });
+  }
 
-      <div className="img-text-wrapper">
-        <div className="logo-wrapper">
-          <img src={logo_url} />
+  handleMouseLeave(e) {
+    this.setState({ portfolioItemClass: "" });
+  }
+  render() {
+    const { id, description, thumb_image_url, logo_url } = this.props.item;
+    return (
+      // when we render, it is this.props in a class component
+      <div className="portfolio-item-wrapper" onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
+        <div
+          className={"portfolio-img-background " + this.state.portfolioItemClass}
+          style={{
+            backgroundImage: "url(" + thumb_image_url + ")",
+          }}
+        />
+        {/*here we pass the style in two sets of curly brackets */}
+
+        <div className="img-text-wrapper">
+          <div className="logo-wrapper">
+            <img src={logo_url} />
+          </div>
+          <div className="subtitle">{description}</div>
         </div>
-        <div className="subtitle">{description}</div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 // we change props.slug to the id directly
