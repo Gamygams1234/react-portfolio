@@ -8,7 +8,7 @@ export default function (props) {
   // logo :logo
   // id :id
   // slug
-  const { id, description, thumb_image_url, logo } = props.item;
+  const { id, description, thumb_image_url, logo_url } = props.item;
   return (
     <div className="portfolio-item-wrapper">
       <div
@@ -19,9 +19,12 @@ export default function (props) {
       />
       {/*here we pass the style in two sets of curly brackets */}
 
-      <img src={logo} alt="logo" />
-      <div>{description}</div>
-      <Link to={`/portfolio/${id}`}>Link</Link>
+      <div className="img-text-wrapper">
+        <div className="logo-wrapper">
+          <img src={logo_url} />
+        </div>
+        <div className="subtitle">{description}</div>
+      </div>
     </div>
   );
 }
