@@ -16,11 +16,15 @@
     border-bottom: 1px solid transparent;
     transition: 0.5s ease-in-out;
     a {
-      color: black;
+      color: $grey;
       text-decoration: none;
+      &:hover {
+        color: black;
+      }
     }
     // this is adding our hover in the Navlink wrapper
     &:hover {
+      color: black;
       border-bottom: 1px solid black;
     }
   }
