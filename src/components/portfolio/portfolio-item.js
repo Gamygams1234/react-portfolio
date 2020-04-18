@@ -11,7 +11,14 @@ export default function (props) {
   const { id, description, thumb_image_url, logo } = props.item;
   return (
     <div className="portfolio-item-wrapper">
-      <img src={thumb_image_url} alt="background" />
+      <div
+        className="portfolio-img-background"
+        style={{
+          backgroundImage: "url(" + thumb_image_url + ")",
+        }}
+      />
+      {/*here we pass the style in two sets of curly brackets */}
+
       <img src={logo} alt="logo" />
       <div>{description}</div>
       <Link to={`/portfolio/${id}`}>Link</Link>
