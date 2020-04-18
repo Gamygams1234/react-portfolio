@@ -5,4 +5,23 @@
   justify-content: space-between;
   // puttong the padding in the elements
   padding: 30px;
+
+  .left-side {
+    // making sure our links are side to side
+    display: flex;
+  }
+  .nav-link-wrapper {
+    height: 22px;
+    // puttiong our bottom border right now, then we can add a hover later on
+    border-bottom: 1px solid transparent;
+    transition: 0.5s ease-in-out;
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    // this is adding our hover in the Navlink wrapper
+    &:hover {
+      border-bottom: 1px solid black;
+    }
+  }
 }
