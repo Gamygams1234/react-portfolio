@@ -1,0 +1,8 @@
+.nav-wrapper {
+  // puttihng a flex container making the items inline
+  display: flex;
+  //   setting the space in between the two elements
+  justify-content: space-between;
+  // puttong the padding in the elements
+  padding: 30px;
+}
