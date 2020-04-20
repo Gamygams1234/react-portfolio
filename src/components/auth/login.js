@@ -7,11 +7,14 @@ export default class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      errorText: "",
     };
   }
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
+      // resetting the error text
+      errorText: "",
     });
   };
   handleSubmit = (e) => {
@@ -28,8 +31,22 @@ export default class Login extends Component {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log("response", response);
+        if (response.data.status === "created") {
+          console.log("You can come in.");
+        } else {
+          // this will show us if somebody did something wrong
+          this.setState({
+            errorText: "Wrong email or password",
+          });
+        }
+      })
+      .catch((error) => {
+        // this will work for an error in the server
+        this.setState({
+          errorText: "An error occured",
+        });
       });
+
     e.preventDefault();
     console.log("Handle submit", this.state.email, this.state.password);
     this.setState({
@@ -41,6 +58,7 @@ export default class Login extends Component {
     return (
       <div>
         <h1>LOGIN TO ACCESS YOUR DASHBOARD</h1>
+        <div>{this.state.errorText}</div>
         <form onSubmit={this.handleSubmit}>
           <input type="email" name="email" placeholder="Your email" value={this.state.email} onChange={this.handleChange} />
           <input type="password" name="password" placeholder="Your password" value={this.state.password} onChange={this.handleChange} />
