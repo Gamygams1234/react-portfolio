@@ -10,6 +10,7 @@ import Blog from "./pages/blog";
 import PortfolioDetail from "./portfolio/portfolio-detail";
 import Auth from "./pages/auth";
 import NoMatch from "./pages/no-match";
+import axios from "axios";
 
 export default class App extends Component {
   // creating state indication logged in and rendering it to auth
@@ -29,6 +30,33 @@ export default class App extends Component {
       loggedInStatus: "NOT_LOGGED_IN",
     });
   };
+  // checking our login with axios
+  checkLoginStatus = () => {
+    return axios
+      .get("https://api.devcamp.space/logged_in", { withCredentials: true })
+      .then((res) => {
+        const loggedIn = res.data.logged_in;
+        const loggedInStatus = this.state.loggedInStatus;
+        //checking to see if someone is logged into our server
+        if (loggedIn && loggedInStatus === "LOGGED_IN") {
+          return loggedIn;
+        } else if (loggedIn && loggedInStatus === "NOT_LOGGED_IN") {
+          this.setState({
+            loggedInStatus: "LOGGED_IN",
+          });
+        } else if (!loggedIn && loggedInStatus === "NOT_LOGGED_IN") {
+          this.setState({
+            loggedInStatus: "NOT_LOGGED_IN",
+          });
+        }
+      })
+      .catch((err) => {
+        console.log("Error", err);
+      });
+  };
+  componentDidMount() {
+    this.checkLoginStatus();
+  }
   render() {
     return (
       <div className="container">
