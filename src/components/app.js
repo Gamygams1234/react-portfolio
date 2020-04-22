@@ -36,6 +36,7 @@ export default class App extends Component {
           <div>
             {/*Taking out the moment and the header */}
             <NavigationContainer />
+            <h2>{this.state.loggedInStatus}</h2>
             <Switch>
               <Route exact path="/" component={Home}></Route>
               <Route path="/auth" render={(props) => <Auth {...props} handleSuccessfulLogin={this.handleSuccessfulLogin} handleUnsuccessfulLogin={this.handleUnsuccessfulLogin} />}></Route>

@@ -32,12 +32,13 @@ export default class Login extends Component {
       )
       .then((response) => {
         if (response.data.status === "created") {
-          console.log("You can come in.");
+          this.props.handleSuccessfulAuth();
         } else {
           // this will show us if somebody did something wrong
           this.setState({
             errorText: "Wrong email or password",
           });
+          this.props.handleUnsuccessfulAuth();
         }
       })
       .catch((error) => {
@@ -45,6 +46,7 @@ export default class Login extends Component {
         this.setState({
           errorText: "An error occured",
         });
+        this.props.handleUnsuccessfulAuth();
       });
 
     e.preventDefault();
