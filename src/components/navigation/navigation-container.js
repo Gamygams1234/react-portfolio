@@ -10,8 +10,8 @@ const NavigationContatiner = (props) => {
   const dynamicLink = (route, linkText) => {
     return (
       <div className="nav-link-wrapper">
-        <NavLink to="/blog" activeClassName="nav-link-active">
-          Blog
+        <NavLink to={route} activeClassName="nav-link-active">
+          {linkText}
         </NavLink>
       </div>
     );
@@ -54,8 +54,15 @@ const NavigationContatiner = (props) => {
             Contact
           </NavLink>
         </div>
+        <div className="nav-link-wrapper">
+          <NavLink to="/blog" activeClassName="nav-link-active">
+            Blog
+          </NavLink>
+        </div>
+
         {/*using a ternary operator to see if we are logged in or not */}
-        {props.loggedInStatus === "LOGGED_IN" ? dynamicLink("/blog", "Blog") : null}
+
+        {props.loggedInStatus === "LOGGED_IN" ? dynamicLink("/portfolio-manager", "Portfolio Manager") : null}
       </div>
       <div className="right-side">
         GAMALIEL BURGOS

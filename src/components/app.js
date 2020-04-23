@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import NavigationContainer from "./navigation/navigation-container";
 import About from "./pages/about";
+import PortfolioManager from "./pages/portfolio-manager";
 import Home from "./pages/home";
 import Contact from "./pages/contact";
 import Blog from "./pages/blog";
@@ -62,7 +63,7 @@ export default class App extends Component {
   };
   // {/* here is s list of our authorized pages*/}
   authorizedPages = () => {
-    return [<Route path="/blog" component={Blog}></Route>];
+    return [<Route path="/portfolio-manager" component={PortfolioManager}></Route>];
   };
   componentDidMount() {
     this.checkLoginStatus();
@@ -74,12 +75,14 @@ export default class App extends Component {
           <div>
             {/*Taking out the moment and the header */}
             <NavigationContainer loggedInStatus={this.state.loggedInStatus} handleSuccessfulLogout={this.handleSuccessfulLogout} />
-            <h2>{this.state.loggedInStatus}</h2>
+
             <Switch>
               <Route exact path="/" component={Home}></Route>
               <Route path="/auth" render={(props) => <Auth {...props} handleSuccessfulLogin={this.handleSuccessfulLogin} handleUnsuccessfulLogin={this.handleUnsuccessfulLogin} />}></Route>
               <Route path="/about-me" component={About}></Route>
               <Route path="/contact" component={Contact}></Route>
+              <Route path="/blog" component={Blog}></Route>
+
               {/*using a ternary operator to see if we are logged in or not  and passing the authorised pages function*/}
               {this.state.loggedInStatus === "LOGGED_IN" ? this.authorizedPages() : null}
 
