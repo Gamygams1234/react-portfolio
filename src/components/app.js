@@ -54,6 +54,10 @@ export default class App extends Component {
         console.log("Error", err);
       });
   };
+  // {/* here is s list of our authorized pages*/}
+  authorizedPages = () => {
+    return [<Route path="/blog" component={Blog}></Route>];
+  };
   componentDidMount() {
     this.checkLoginStatus();
   }
@@ -70,7 +74,9 @@ export default class App extends Component {
               <Route path="/auth" render={(props) => <Auth {...props} handleSuccessfulLogin={this.handleSuccessfulLogin} handleUnsuccessfulLogin={this.handleUnsuccessfulLogin} />}></Route>
               <Route path="/about-me" component={About}></Route>
               <Route path="/contact" component={Contact}></Route>
-              <Route path="/blog" component={Blog}></Route>
+              {/*using a ternary operator to see if we are logged in or not  and passing the authorised pages function*/}
+              {this.state.loggedInStatus === "LOGGED_IN" ? this.authorizedPages() : null}
+
               <Route exact path="/portfolio/:slug" component={PortfolioDetail} />
               <Route component={NoMatch} />
             </Switch>
