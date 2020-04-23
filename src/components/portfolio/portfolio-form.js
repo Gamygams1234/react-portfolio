@@ -15,7 +15,10 @@ export default class PortfolioForm extends Component {
     };
   }
   handleChange = (e) => {
-    console.log("handle change", event);
+    // updating the state
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -26,7 +29,7 @@ export default class PortfolioForm extends Component {
       <div>
         <h1>PortfolioForm</h1>
 
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <input type="text" name="name" placeholder="Portfolio Item Name" value={this.state.name} onChange={this.handleChange} />
             <input type="text" name="url" placeholder="URL" value={this.state.url} onChange={this.handleChange} />
@@ -37,9 +40,7 @@ export default class PortfolioForm extends Component {
             <input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleChange} />
           </div>
           <div>
-            <button type="submit" onSubmit={this.handleSubmit}>
-              Save
-            </button>
+            <button type="submit">Save</button>
           </div>
         </form>
       </div>
