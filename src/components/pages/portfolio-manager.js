@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import PortfolioSidebarList from "../portfolio/portfolio-sidebar-list";
+import PortfolioForm from "../portfolio/portfolio-form";
 
 export default class PortfolioManager extends Component {
   constructor() {
@@ -9,6 +10,14 @@ export default class PortfolioManager extends Component {
       portfolioItems: [],
     };
   }
+  handleSuccessfulFormSubmisson = (item) => {
+    // TODO
+    //Update portfolio Items
+    // add items to the list
+  };
+  handleFormSubmissonError = (error) => {
+    console.log("handleFormSubmissionError", error);
+  };
   getPortfolioItems() {
     axios
       .get("https://gamyburgos.devcamp.space/portfolio/portfolio_items", { withCredentials: true })
@@ -31,7 +40,7 @@ export default class PortfolioManager extends Component {
     return (
       <div className="portfolio-manager-wrapper">
         <div className="left-column">
-          <h1>Portfolio form....</h1>
+          <PortfolioForm handleSuccessfulFormSubmisson={this.handleSuccessfulFormSubmisson} handleFormSubmissonError={this.handleFormSubmissonError} />
         </div>
 
         <div className="right-column">
