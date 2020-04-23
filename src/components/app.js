@@ -30,6 +30,12 @@ export default class App extends Component {
       loggedInStatus: "NOT_LOGGED_IN",
     });
   };
+  // this will handle what happend to the state when we log out
+  handleSuccessfulLogout = () => {
+    this.setState({
+      loggedInStatus: "NOT_LOGGED_IN",
+    });
+  };
   // checking our login with axios
   checkLoginStatus = () => {
     return axios
@@ -67,7 +73,7 @@ export default class App extends Component {
         <Router>
           <div>
             {/*Taking out the moment and the header */}
-            <NavigationContainer loggedInStatus={this.state.loggedInStatus} />
+            <NavigationContainer loggedInStatus={this.state.loggedInStatus} handleSuccessfulLogout={this.handleSuccessfulLogout} />
             <h2>{this.state.loggedInStatus}</h2>
             <Switch>
               <Route exact path="/" component={Home}></Route>
