@@ -63,7 +63,7 @@ export default class App extends Component {
   };
   // {/* here is s list of our authorized pages*/}
   authorizedPages = () => {
-    return [<Route path="/portfolio-manager" component={PortfolioManager}></Route>];
+    return [<Route key="portfolio-manager" path="/portfolio-manager" component={PortfolioManager}></Route>];
   };
   componentDidMount() {
     this.checkLoginStatus();

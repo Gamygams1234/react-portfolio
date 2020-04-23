@@ -5,7 +5,8 @@ const PortfolioSidebarList = (props) => {
   // mapping over the list
   const portfolioList = props.data.map((item) => {
     return (
-      <div className="portfolio-item-thumb">
+      //putting the id in the wrapper
+      <div key={item.id} className="portfolio-item-thumb">
         <div className="portfolio-thumb-image">
           <img src={item.thumb_image_url} />
         </div>
