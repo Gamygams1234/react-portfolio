@@ -22,7 +22,17 @@ export default class PortfolioForm extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log("handle submit", event);
+    this.buildForm();
+  };
+  buildForm = () => {
+    let formData = new FormData();
+    // this will build our data to g to the API
+    formData.append("portfolio_item[name]", this.state.name);
+    formData.append("portfolio_item[desccription]", this.state.desccription);
+    formData.append("portfolio_item[url]", this.state.url);
+    formData.append("portfolio_item[category]", this.state.category);
+    formData.append("portfolio_item[position]", this.state.position);
+    return formData;
   };
   render() {
     return (
