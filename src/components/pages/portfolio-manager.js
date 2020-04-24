@@ -10,9 +10,12 @@ export default class PortfolioManager extends Component {
       portfolioItems: [],
     };
   }
-  handleSuccessfulFormSubmisson = (item) => {
+  handleSuccessfulFormSubmisson = (portfolioItem) => {
     // TODO
     //Update portfolio Items
+    this.setState({
+      portfolioItems: [portfolioItem].concat(this.state.portfolioItems),
+    });
     // add items to the list
   };
   handleFormSubmissonError = (error) => {
@@ -20,7 +23,8 @@ export default class PortfolioManager extends Component {
   };
   getPortfolioItems() {
     axios
-      .get("https://gamyburgos.devcamp.space/portfolio/portfolio_items", { withCredentials: true })
+      // we are assing the ?order_by=created_at&direction=desc to get the order to go by newest
+      .get("https://gamyburgos.devcamp.space/portfolio/portfolio_items?order_by=created_at&direction=desc", { withCredentials: true })
       .then((response) => {
         this.setState({
           // in order to get an array in the state, we want to use a spread operator
