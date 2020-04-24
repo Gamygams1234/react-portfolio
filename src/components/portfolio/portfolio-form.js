@@ -19,6 +19,11 @@ export default class PortfolioForm extends Component {
       logo: "",
     };
   }
+  handleThumbDrop = () => {
+    return {
+      addedfile: (file) => this.setState({ thumb_image: file }),
+    };
+  };
   handleChange = (e) => {
     // updating the state
     this.setState({
@@ -57,6 +62,9 @@ export default class PortfolioForm extends Component {
     formData.append("portfolio_item[url]", this.state.url);
     formData.append("portfolio_item[category]", this.state.category);
     formData.append("portfolio_item[position]", this.state.position);
+    if (this.state.thumb_image) {
+      formData.append("portfolio_item[thumb_image]", this.state.thumb_image);
+    }
     return formData;
   };
   render() {
@@ -80,7 +88,7 @@ export default class PortfolioForm extends Component {
             <textarea type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleChange} />
           </div>
           <div className="image-uploaders">
-            <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()}></DropzoneComponent>
+            <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleThumbDrop()}></DropzoneComponent>
           </div>
           <div>
             <button type="submit">Save</button>
