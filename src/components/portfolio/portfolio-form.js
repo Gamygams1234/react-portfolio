@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 export default class PortfolioForm extends Component {
   constructor(props) {
@@ -20,9 +21,16 @@ export default class PortfolioForm extends Component {
       [event.target.name]: event.target.value,
     });
   };
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.buildForm();
+  handleSubmit = (event) => {
+    event.preventDefault();
+    axios
+      .post("https://gamyburgos.devcamp.space/portfolio/portfolio_items", this.buildForm(), { withCredentials: true })
+      .then((res) => {
+        console.log("response", res);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
   };
   buildForm = () => {
     let formData = new FormData();
