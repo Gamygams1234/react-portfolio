@@ -24,6 +24,16 @@ export default class PortfolioForm extends Component {
       addedfile: (file) => this.setState({ thumb_image: file }),
     };
   };
+  handleLogoDrop = () => {
+    return {
+      addedfile: (file) => this.setState({ logo: file }),
+    };
+  };
+  handleBannerDrop = () => {
+    return {
+      addedfile: (file) => this.setState({ banner_image: file }),
+    };
+  };
   handleChange = (e) => {
     // updating the state
     this.setState({
@@ -65,6 +75,12 @@ export default class PortfolioForm extends Component {
     if (this.state.thumb_image) {
       formData.append("portfolio_item[thumb_image]", this.state.thumb_image);
     }
+    if (this.state.banner_image) {
+      formData.append("portfolio_item[banner_image]", this.state.banner_image);
+    }
+    if (this.state.logo) {
+      formData.append("portfolio_item[logo]", this.state.logo);
+    }
     return formData;
   };
   render() {
@@ -89,6 +105,8 @@ export default class PortfolioForm extends Component {
           </div>
           <div className="image-uploaders">
             <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleThumbDrop()}></DropzoneComponent>
+            <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleBannerDrop()}></DropzoneComponent>
+            <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleLogoDrop()}></DropzoneComponent>
           </div>
           <div>
             <button type="submit">Save</button>
