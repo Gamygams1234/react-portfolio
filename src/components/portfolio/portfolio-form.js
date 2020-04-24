@@ -60,7 +60,7 @@ export default class PortfolioForm extends Component {
             </select>
           </div>
           <div>
-            <input type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleChange} />
+            <textarea type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleChange} />
           </div>
           <div>
             <button type="submit">Save</button>
