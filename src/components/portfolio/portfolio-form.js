@@ -107,13 +107,23 @@ export default class PortfolioForm extends Component {
         <div className="one-column">
           <textarea type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleChange} />
         </div>
-        <div className="image-uploaders three-column">
-          <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleThumbDrop()} ref={this.thumbRef}></DropzoneComponent>
-          <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleBannerDrop()} ref={this.bannerRef}></DropzoneComponent>
-          <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleLogoDrop()} ref={this.logoRef}></DropzoneComponent>
+        <div className="image-uploaders">
+          <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleThumbDrop()} ref={this.thumbRef}>
+            <div className="dz-message">Thumbnail</div>
+          </DropzoneComponent>
+          <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleBannerDrop()} ref={this.bannerRef}>
+            {" "}
+            <div className="dz-message">Banner</div>
+          </DropzoneComponent>
+          <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleLogoDrop()} ref={this.logoRef}>
+            {" "}
+            <div className="dz-message">Logo</div>
+          </DropzoneComponent>
         </div>
         <div>
-          <button type="submit">Save</button>
+          <button className="btn" type="submit">
+            Save
+          </button>
         </div>
       </form>
     );
