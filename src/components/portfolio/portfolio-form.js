@@ -93,7 +93,7 @@ export default class PortfolioForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="portfolio-form-wrapper">
-        <div>
+        <div className="two-column">
           <input type="text" name="name" placeholder="Portfolio Item Name" value={this.state.name} onChange={this.handleChange} />
           <input type="text" name="url" placeholder="URL" value={this.state.url} onChange={this.handleChange} />
           <input type="text" name="position" placeholder="Position" value={this.state.position} onChange={this.handleChange} />
@@ -104,10 +104,10 @@ export default class PortfolioForm extends Component {
             <option value="Enterprise">Enterprise</option>
           </select>
         </div>
-        <div>
+        <div className="one-column">
           <textarea type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleChange} />
         </div>
-        <div className="image-uploaders">
+        <div className="image-uploaders three-column">
           <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleThumbDrop()} ref={this.thumbRef}></DropzoneComponent>
           <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleBannerDrop()} ref={this.bannerRef}></DropzoneComponent>
           <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleLogoDrop()} ref={this.logoRef}></DropzoneComponent>

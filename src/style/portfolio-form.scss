@@ -2,7 +2,11 @@
   display: grid;
   grid-template-columns: 1fr;
   padding: 42px;
+  grid-gap: 21px;
   @include input-element();
+  input {
+    margin-bottom: 0px;
+  }
   &:focus {
     outline: none;
     border-bottom: 1px solid $darkteal;
