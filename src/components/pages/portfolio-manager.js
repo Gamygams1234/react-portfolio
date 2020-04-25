@@ -36,6 +36,9 @@ export default class PortfolioManager extends Component {
         console.log(error);
       });
   }
+  handleDeleteClick = (portfolioItem) => {
+    console.log("handleDelete", portfolioItem);
+  };
   componentDidMount() {
     this.getPortfolioItems(); // putting the getPortfolioItems in component did mount
     // we want to get it ath the start nd load it once
@@ -49,7 +52,7 @@ export default class PortfolioManager extends Component {
 
         <div className="right-column">
           {/*passing in our data from our api */}
-          <PortfolioSidebarList data={this.state.portfolioItems} />
+          <PortfolioSidebarList handleDeleteClick={this.handleDeleteClick} data={this.state.portfolioItems} />
         </div>
       </div>
     );
