@@ -97,7 +97,7 @@ export default class PortfolioForm extends Component {
           <input type="text" name="name" placeholder="Portfolio Item Name" value={this.state.name} onChange={this.handleChange} />
           <input type="text" name="url" placeholder="URL" value={this.state.url} onChange={this.handleChange} />
           <input type="text" name="position" placeholder="Position" value={this.state.position} onChange={this.handleChange} />
-          <select type="text" name="category" placeholder="Category" value={this.state.category} onChange={this.handleChange}>
+          <select className="select-element" type="text" name="category" placeholder="Category" value={this.state.category} onChange={this.handleChange}>
             {/* making a select tag with the options */}
             <option value="eCommerce">eCommerce</option>
             <option value="Scheduling">Scheduling</option>
