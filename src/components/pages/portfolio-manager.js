@@ -8,7 +8,14 @@ export default class PortfolioManager extends Component {
     super();
     this.state = {
       portfolioItems: [],
+      portfolioToEdit: {},
     };
+    this.handleEditClick = this.handleEditClick.bind(this);
+  }
+  handleEditClick(portfolioItem) {
+    this.setState({
+      portfolioToEdit: portfolioItem,
+    });
   }
   handleSuccessfulFormSubmisson = (portfolioItem) => {
     // TODO
@@ -64,7 +71,7 @@ export default class PortfolioManager extends Component {
 
         <div className="right-column">
           {/*passing in our data from our api */}
-          <PortfolioSidebarList handleDeleteClick={this.handleDeleteClick} data={this.state.portfolioItems} />
+          <PortfolioSidebarList handleEditClick={this.handleEditClick} handleDeleteClick={this.handleDeleteClick} data={this.state.portfolioItems} />
         </div>
       </div>
     );
