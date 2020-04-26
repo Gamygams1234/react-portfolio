@@ -17,6 +17,9 @@ export default class PortfolioForm extends Component {
       thumb_image: "",
       banner_image: "",
       logo: "",
+      editMode: false,
+      apiUrl: "https://jordan.devcamp.space/portfolio/portfolio_items",
+      apiAction: "post",
     };
     this.thumbRef = React.createRef();
     this.logoRef = React.createRef();
@@ -35,6 +38,9 @@ export default class PortfolioForm extends Component {
         category: category || "eCommerce",
         position: position || "",
         url: url || "",
+        editMode: true,
+        apiUrl: `https://jordan.devcamp.space/portfolio/portfolio_items/${id}`,
+        apiAction: "patch",
       });
     }
   }
@@ -61,10 +67,14 @@ export default class PortfolioForm extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post("https://gamyburgos.devcamp.space/portfolio/portfolio_items", this.buildForm(), { withCredentials: true })
-      .then((res) => {
-        this.props.handleSuccessfulFormSubmisson(res.data.portfolio_item);
+    axios({
+      method: this.state.apiAction,
+      url: this.state.apiUrl,
+      data: this.buildForm(),
+      withCredentials: true,
+    })
+      .then((response) => {
+        this.props.handleSuccessfulFormSubmission(response.data.portfolio_item);
         [this.thumbRef, this.bannerRef, this.logoRef].forEach((ref) => {
           ref.current.dropzone.removeAllFiles();
         });

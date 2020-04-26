@@ -26,13 +26,10 @@ export default class PortfolioManager extends Component {
     });
   }
 
-  handleSuccessfulFormSubmisson = (portfolioItem) => {
-    // TODO
-    //Update portfolio Items
+  handleSuccessfulFormSubmission = (portfolioItem) => {
     this.setState({
       portfolioItems: [portfolioItem].concat(this.state.portfolioItems),
     });
-    // add items to the list
   };
   handleFormSubmissonError = (error) => {
     console.log("handleFormSubmissionError", error);

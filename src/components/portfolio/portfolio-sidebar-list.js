@@ -1,5 +1,5 @@
 import React from "react";
-import PortfolioItem from "./portfolio-item";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const PortfolioSidebarList = (props) => {
