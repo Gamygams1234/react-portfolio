@@ -41,6 +41,9 @@ export default class PortfolioForm extends Component {
         editMode: true,
         apiUrl: `https://gamyburgos.devcamp.space/portfolio/portfolio_items/${id}`,
         apiAction: "patch",
+        thumb_image: thumb_image_url || "",
+        banner_image: banner_image_url || "",
+        logo: logo_url || "",
       });
     }
   }
@@ -140,9 +143,14 @@ export default class PortfolioForm extends Component {
           <textarea type="text" name="description" placeholder="Description" value={this.state.description} onChange={this.handleChange} />
         </div>
         <div className="image-uploaders">
-          <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleThumbDrop()} ref={this.thumbRef}>
-            <div className="dz-message">Thumbnail</div>
-          </DropzoneComponent>
+          {/*checking to see if there is an image and we are in edit mode */}
+          {this.state.thumb_image && this.state.editMode ? (
+            <img src={this.state.thumb_image} />
+          ) : (
+            <DropzoneComponent ref={this.thumbRef} config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleThumbDrop()}>
+              <div className="dz-message">Thumbnail</div>
+            </DropzoneComponent>
+          )}
           <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleBannerDrop()} ref={this.bannerRef}>
             {" "}
             <div className="dz-message">Banner</div>
