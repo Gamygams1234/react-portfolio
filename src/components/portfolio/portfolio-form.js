@@ -41,9 +41,9 @@ export default class PortfolioForm extends Component {
         editMode: true,
         apiUrl: `https://gamyburgos.devcamp.space/portfolio/portfolio_items/${id}`,
         apiAction: "patch",
-        thumb_image: thumb_image_url || "",
-        banner_image: banner_image_url || "",
-        logo: logo_url || "",
+        thumb_image_url: thumb_image_url || "",
+        banner_image_url: banner_image_url || "",
+        logo_url: logo_url || "",
       });
     }
   }
@@ -148,9 +148,9 @@ export default class PortfolioForm extends Component {
         <div className="image-uploaders">
           {/*checking to see if there is an image and we are in edit mode */}
 
-          {this.state.thumb_image && this.state.editMode ? (
+          {this.state.thumb_image_url && this.state.editMode ? (
             <div className="portfolio-manager-image-wrapper">
-              <img src={this.state.thumb_image} />
+              <img src={this.state.thumb_image_url} />
               <div className="image-removal-link">
                 <a onClick={() => this.deleteImage("thumb_image")}>Remove file</a>
               </div>
@@ -161,9 +161,9 @@ export default class PortfolioForm extends Component {
             </DropzoneComponent>
           )}
 
-          {this.state.banner_image && this.state.editMode ? (
+          {this.state.banner_image_url && this.state.editMode ? (
             <div className="portfolio-manager-image-wrapper">
-              <img src={this.state.banner_image} />
+              <img src={this.state.banner_image_url} />
               <div className="image-removal-link">
                 <a onClick={() => this.deleteImage("banner_image")}>Remove file</a>
               </div>
@@ -175,9 +175,9 @@ export default class PortfolioForm extends Component {
             </DropzoneComponent>
           )}
 
-          {this.state.logo && this.state.editMode ? (
+          {this.state.logo_url && this.state.editMode ? (
             <div className="portfolio-manager-image-wrapper">
-              <img src={this.state.logo} />
+              <img src={this.state.logo_url} />
               <div className="image-removal-link">
                 <a onClick={() => this.deleteImage("logo")}>Remove file</a>
               </div>
