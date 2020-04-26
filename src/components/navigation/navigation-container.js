@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { withRouter } from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NavigationContatiner = (props) => {
   {
@@ -66,7 +67,11 @@ const NavigationContatiner = (props) => {
       </div>
       <div className="right-side">
         GAMALIEL BURGOS
-        {props.loggedInStatus === "LOGGED_IN" ? <a onClick={handleSignOut}> Sign Out</a> : null}
+        {props.loggedInStatus === "LOGGED_IN" ? (
+          <a onClick={handleSignOut}>
+            <FontAwesomeIcon icon="sign-out-alt" />
+          </a>
+        ) : null}
       </div>
     </div>
   );

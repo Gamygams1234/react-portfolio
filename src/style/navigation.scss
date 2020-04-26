@@ -2,6 +2,17 @@
   display: flex;
   justify-content: space-between;
   padding: 30px;
+  .right-side {
+    a {
+      margin-left: 15px;
+      cursor: pointer;
+      color: $teal;
+      transition: 0.2s ease-in-out;
+      &:hover {
+        color: $darkteal;
+      }
+    }
+  }
 
   .left-side {
     display: flex;
