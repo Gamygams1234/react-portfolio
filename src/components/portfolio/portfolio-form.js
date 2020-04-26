@@ -18,7 +18,7 @@ export default class PortfolioForm extends Component {
       banner_image: "",
       logo: "",
       editMode: false,
-      apiUrl: "https://jordan.devcamp.space/portfolio/portfolio_items",
+      apiUrl: "https://gamyburgos.devcamp.space/portfolio/portfolio_items",
       apiAction: "post",
     };
     this.thumbRef = React.createRef();
@@ -39,7 +39,7 @@ export default class PortfolioForm extends Component {
         position: position || "",
         url: url || "",
         editMode: true,
-        apiUrl: `https://jordan.devcamp.space/portfolio/portfolio_items/${id}`,
+        apiUrl: `https://gamyburgos.devcamp.space/portfolio/portfolio_items/${id}`,
         apiAction: "patch",
       });
     }
@@ -74,11 +74,17 @@ export default class PortfolioForm extends Component {
       withCredentials: true,
     })
       .then((response) => {
-        this.props.handleSuccessfulFormSubmission(response.data.portfolio_item);
+        // checking if there is edit mode
+
+        if (this.state.editMode) {
+          this.props.handleEditFormSubmission();
+        } else {
+          this.props.handleNewFormSubmission(response.data.portfolio_item);
+        }
         [this.thumbRef, this.bannerRef, this.logoRef].forEach((ref) => {
           ref.current.dropzone.removeAllFiles();
         });
-        this.setState({ name: "", description: "", category: "eCommerce", position: "", url: "", thumb_image: "", banner_image: "", logo: "" });
+        this.setState({ name: "", description: "", category: "eCommerce", position: "", url: "", thumb_image: "", banner_image: "", logo: "", editMode: false, apiUrl: "https://gamyburgos.devcamp.space/portfolio/portfolio_items", apiAction: "post" });
       })
       .catch((error) => {
         console.log("error", error);
