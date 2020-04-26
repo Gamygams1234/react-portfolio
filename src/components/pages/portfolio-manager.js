@@ -11,12 +11,21 @@ export default class PortfolioManager extends Component {
       portfolioToEdit: {},
     };
     this.handleEditClick = this.handleEditClick.bind(this);
+    this.clearPortfolioToEdit = this.clearPortfolioToEdit.bind(this);
   }
+
+  clearPortfolioToEdit() {
+    this.setState({
+      portfolioToEdit: {},
+    });
+  }
+
   handleEditClick(portfolioItem) {
     this.setState({
       portfolioToEdit: portfolioItem,
     });
   }
+
   handleSuccessfulFormSubmisson = (portfolioItem) => {
     // TODO
     //Update portfolio Items
@@ -66,12 +75,12 @@ export default class PortfolioManager extends Component {
     return (
       <div className="portfolio-manager-wrapper">
         <div className="left-column">
-          <PortfolioForm handleSuccessfulFormSubmisson={this.handleSuccessfulFormSubmisson} handleFormSubmissonError={this.handleFormSubmissonError} />
+          <PortfolioForm handleSuccessfulFormSubmission={this.handleSuccessfulFormSubmission} handleFormSubmissionError={this.handleFormSubmissionError} clearPortfolioToEdit={this.clearPortfolioToEdit} portfolioToEdit={this.state.portfolioToEdit} />
         </div>
 
         <div className="right-column">
           {/*passing in our data from our api */}
-          <PortfolioSidebarList handleEditClick={this.handleEditClick} handleDeleteClick={this.handleDeleteClick} data={this.state.portfolioItems} />
+          <PortfolioSidebarList clearPortfolioToEdit={this.clearPortfolioToEdit} handleEditClick={this.handleEditClick} handleDeleteClick={this.handleDeleteClick} data={this.state.portfolioItems} />
         </div>
       </div>
     );
