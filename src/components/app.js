@@ -8,6 +8,7 @@ import PortfolioManager from "./pages/portfolio-manager";
 import Home from "./pages/home";
 import Contact from "./pages/contact";
 import Blog from "./pages/blog";
+import BlogDetail from "./pages/blog-detail";
 import PortfolioDetail from "./portfolio/portfolio-detail";
 import Auth from "./pages/auth";
 import NoMatch from "./pages/no-match";
@@ -87,6 +88,7 @@ export default class App extends Component {
               <Route path="/about-me" component={About}></Route>
               <Route path="/contact" component={Contact}></Route>
               <Route path="/blog" component={Blog}></Route>
+              <Route path="/b/:slug" component={BlogDetail}></Route>
 
               {/*using a ternary operator to see if we are logged in or not  and passing the authorised pages function*/}
               {this.state.loggedInStatus === "LOGGED_IN" ? this.authorizedPages() : null}
