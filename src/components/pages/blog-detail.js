@@ -13,7 +13,9 @@ export default class BlogDetail extends Component {
     axios
       .get(`https://gamyburgos.devcamp.space/portfolio/portfolio_blogs/${this.state.currentId}`)
       .then((res) => {
-        console.log("response", res);
+        this.setState({
+          blogItem: res.data.portfolio_blog,
+        });
       })
       .catch((error) => {
         console.log("get Item Error", error);
@@ -23,10 +25,13 @@ export default class BlogDetail extends Component {
     this.getBlogItem();
   }
   render() {
+    const { title, content, featured_image_url } = this.state.blogItem;
     console.log("currentId", this.state.currentId);
     return (
       <div>
-        <h1>John Cena Sucks</h1>
+        <h1>{title}</h1>
+        <img src={featured_image_url} />
+        <div>{content}</div>
       </div>
     );
   }
