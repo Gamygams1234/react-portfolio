@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import BlogItem from "../blog/blog-item";
 // making a class component
 class Blog extends Component {
   constructor() {
@@ -28,7 +29,7 @@ class Blog extends Component {
 
   render() {
     const blogRecords = this.state.blogItems.map((blogItem) => {
-      return <h1>{blogItem.title}</h1>;
+      return <BlogItem key={blogItem.id} blogItem={blogItem} />;
     });
     return <div>{blogRecords}</div>;
   }
