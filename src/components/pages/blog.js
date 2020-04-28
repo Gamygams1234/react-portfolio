@@ -9,6 +9,7 @@ class Blog extends Component {
     this.state = {
       blogItems: [],
     };
+    this.activateInfiniteScroll();
   }
   getBlogItems = () => {
     axios
@@ -21,6 +22,11 @@ class Blog extends Component {
       .catch((error) => {
         console.log("getBlogItems error", error);
       });
+  };
+  activateInfiniteScroll = () => {
+    window.onscroll = () => {
+      console.log("on scroll");
+    };
   };
 
   componentWillMount() {
