@@ -28,10 +28,12 @@ export default class BlogDetail extends Component {
     const { title, content, featured_image_url } = this.state.blogItem;
     console.log("currentId", this.state.currentId);
     return (
-      <div>
-        <h1>{title}</h1>
-        <img src={featured_image_url} />
-        <div>{content}</div>
+      <div className="blog-container">
+        <div lassName="content-container">
+          <h1>{title}</h1>
+          <img src={featured_image_url} />
+          <div>{content}</div>
+        </div>
       </div>
     );
   }
