@@ -29,7 +29,7 @@ export default class BlogDetail extends Component {
     console.log("currentId", this.state.currentId);
     return (
       <div className="blog-container">
-        <div lassName="content-container">
+        <div className="content-container">
           <h1>{title}</h1>
           <img src={featured_image_url} />
           <div>{content}</div>

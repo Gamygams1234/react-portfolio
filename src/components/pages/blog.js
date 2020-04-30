@@ -13,7 +13,7 @@ class Blog extends Component {
   }
   getBlogItems = () => {
     axios
-      .get("https://gamyburgos.devcamp.space/portfolio/portfolio_blogs", { withCredentials: true })
+      .get("https://gamyburgos.devcamp.space/portfolio/portfolio_blogs")
       .then((response) => {
         this.setState({
           blogItems: response.data.portfolio_blogs,
@@ -24,8 +24,14 @@ class Blog extends Component {
       });
   };
   activateInfiniteScroll = () => {
+    // this is all vanilla javascript that you can do on any project
     window.onscroll = () => {
-      console.log("on scroll");
+      //window.innerHeight = the height of the window in the browser
+      // document.documentElement.scrollTop = the positon at the top of the browser when someone is scrolling .
+      // offsetHeight = end of the page
+      if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+        console.log("get More posts");
+      }
     };
   };
 
