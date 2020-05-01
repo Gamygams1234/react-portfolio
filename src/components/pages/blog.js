@@ -46,7 +46,7 @@ class Blog extends Component {
   };
 
   // this is all vanilla javascript that you can do on any project
-  onScroll = () => {
+  onScroll = (e) => {
     // checking to see if we made it to the end
     if (this.state.isLoading || this.state.blogItems.length === this.state.totalCount) {
       return;
@@ -57,6 +57,7 @@ class Blog extends Component {
   };
 
   componentWillMount() {
+    window.addEventListener("scroll", this.onScroll, false);
     this.getBlogItems();
   }
 
