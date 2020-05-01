@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import ReactModal from "react-modal";
+// we need to place this around the entire wrapper
+ReactModal.setAppElement(".app-wrapper");
 
 export default class BlogModal extends Component {
   constructor(props) {
