@@ -22,6 +22,9 @@ export default class BlogModal extends Component {
       },
     };
   }
+  handleSuccessfullFormSubmission = () => {
+    console.log("Handling the form Submisson");
+  };
 
   render() {
     return (
@@ -33,7 +36,7 @@ export default class BlogModal extends Component {
         }}
         isOpen={this.props.modalIsOpen}
       >
-        <BlogForm />
+        <BlogForm handleSuccessfullFormSubmission={this.handleSuccessfullFormSubmission} />
       </ReactModal>
     );
   }
