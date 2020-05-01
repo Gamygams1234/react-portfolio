@@ -12,10 +12,15 @@ class Blog extends Component {
       blogItems: [],
       totalCount: 0,
       currentPage: 0,
-
+      blogModalIsOpen: false,
       isLoading: true,
     };
   }
+  handleNewBlogClick = (e) => {
+    this.setState({
+      blogModalIsOpen: true,
+    });
+  };
   getBlogItems = () => {
     this.setState({
       currentPage: this.state.currentPage + 1,
@@ -62,8 +67,11 @@ class Blog extends Component {
     });
     return (
       <div className="blog-container">
-        <BlogModal />
-        {/* this will have it show up if the records come in */}
+        <BlogModal modalIsOpen={this.state.blogModalIsOpen} />
+        <div className="new-blog-link">
+          <a onClick={this.handleNewBlogClick}>Open Modal</a>
+        </div>
+
         {this.state.isLoading ? (
           <div className="content-loader">
             <FontAwesomeIcon icon="spinner" spin />
