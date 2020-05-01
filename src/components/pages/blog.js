@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import BlogItem from "../blog/blog-item";
+import BlogModal from "../modals/blog-modal";
 // making a class component
 class Blog extends Component {
   constructor() {
@@ -14,7 +15,6 @@ class Blog extends Component {
 
       isLoading: true,
     };
-    this.activateInfiniteScroll();
   }
   getBlogItems = () => {
     this.setState({
@@ -62,6 +62,7 @@ class Blog extends Component {
     });
     return (
       <div className="blog-container">
+        <BlogModal />
         {/* this will have it show up if the records come in */}
         {this.state.isLoading ? (
           <div className="content-loader">
