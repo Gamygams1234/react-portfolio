@@ -16,7 +16,13 @@ class Blog extends Component {
       isLoading: true,
     };
   }
-  handleNewBlogClick = (e) => {
+
+  handleModalClose = () => {
+    this.setState({
+      blogModalIsOpen: false,
+    });
+  };
+  handleNewBlogClick = () => {
     this.setState({
       blogModalIsOpen: true,
     });
@@ -67,7 +73,7 @@ class Blog extends Component {
     });
     return (
       <div className="blog-container">
-        <BlogModal modalIsOpen={this.state.blogModalIsOpen} />
+        <BlogModal handleModalClose={this.handleModalClose} modalIsOpen={this.state.blogModalIsOpen} />
         <div className="new-blog-link">
           <a onClick={this.handleNewBlogClick}>Open Modal</a>
         </div>
