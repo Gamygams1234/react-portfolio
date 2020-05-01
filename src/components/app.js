@@ -14,10 +14,10 @@ import Auth from "./pages/auth";
 import NoMatch from "./pages/no-match";
 import axios from "axios";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faSignOutAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faTrash, faSignOutAlt, faEdit);
+import { faTrash, faSignOutAlt, faEdit, faSpinner } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faTrash, faSignOutAlt, faEdit, faSpinner);
 
 export default class App extends Component {
   // creating state indication logged in and rendering it to auth
