@@ -11,6 +11,7 @@ class Blog extends Component {
       blogItems: [],
       totalCount: 0,
       currentPage: 0,
+
       isLoading: true,
     };
     this.activateInfiniteScroll();
@@ -20,10 +21,10 @@ class Blog extends Component {
       currentPage: this.state.currentPage + 1,
     });
     axios
-      .get("https://gamyburgos.devcamp.space/portfolio/portfolio_blogs")
+      .get(`https://gamyburgos.devcamp.space/portfolio/portfolio_blogs?page=${this.state.currentPage}`, { withCredentials: true })
       .then((response) => {
         this.setState({
-          blogItems: response.data.portfolio_blogs,
+          blogItems: this.state.blogItems.concat(response.data.portfolio_blogs),
           totalCount: response.data.meta.total_records,
           isLoading: false,
         });
@@ -35,11 +36,12 @@ class Blog extends Component {
   activateInfiniteScroll = () => {
     // this is all vanilla javascript that you can do on any project
     window.onscroll = () => {
-      //window.innerHeight = the height of the window in the browser
-      // document.documentElement.scrollTop = the positon at the top of the browser when someone is scrolling .
-      // offsetHeight = end of the page
+      // checking to see if we made it to the end
+      if (this.state.isLoading || this.state.blogItems.length === this.state.totalCount) {
+        return;
+      }
       if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-        console.log("get More posts");
+        this.getBlogItems();
       }
     };
   };
