@@ -33,21 +33,27 @@ class Blog extends Component {
         console.log("getBlogItems error", error);
       });
   };
-  activateInfiniteScroll = () => {
-    // this is all vanilla javascript that you can do on any project
-    window.onscroll = () => {
-      // checking to see if we made it to the end
-      if (this.state.isLoading || this.state.blogItems.length === this.state.totalCount) {
-        return;
-      }
-      if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-        this.getBlogItems();
-      }
-    };
+
+  // this is all vanilla javascript that you can do on any project
+  onScroll = () => {
+    // checking to see if we made it to the end
+    if (this.state.isLoading || this.state.blogItems.length === this.state.totalCount) {
+      return;
+    }
+    if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+      this.getBlogItems();
+    }
   };
 
   componentWillMount() {
     this.getBlogItems();
+  }
+
+  // we have to unmount this item otherwise we will get a memory leak across the entire website
+  // this is because we acre calling the window to scroll
+  componentWillUnmount() {
+    // this is taking away the function when it is time to unmount
+    window.removeEventListener("scroll", this.onScroll, false);
   }
 
   render() {
