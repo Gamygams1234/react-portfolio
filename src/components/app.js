@@ -87,7 +87,7 @@ export default class App extends Component {
               <Route path="/auth" render={(props) => <Auth {...props} handleSuccessfulLogin={this.handleSuccessfulLogin} handleUnsuccessfulLogin={this.handleUnsuccessfulLogin} />}></Route>
               <Route path="/about-me" component={About}></Route>
               <Route path="/contact" component={Contact}></Route>
-              <Route path="/blog" component={Blog}></Route>
+              <Route path="/blog" render={(props) => <Blog {...props} loggedInStatus={this.state.loggedInStatus} />}></Route>
               <Route path="/b/:slug" component={BlogDetail}></Route>
 
               {/*using a ternary operator to see if we are logged in or not  and passing the authorised pages function*/}
