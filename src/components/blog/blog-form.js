@@ -11,12 +11,11 @@ export default class BlogForm extends Component {
       blog_status: "",
       content: "",
     };
+    this.handleRichTextEditorChange = this.handleRichTextEditorChange.bind(this);
   }
-  handleRichTextEditorChange = (content) => {
-    this.setState({
-      content,
-    });
-  };
+  handleRichTextEditorChange(content) {
+    this.setState({ content });
+  }
   buildForm = () => {
     let formData = new FormData();
 
