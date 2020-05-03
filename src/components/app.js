@@ -15,9 +15,9 @@ import NoMatch from "./pages/no-match";
 import axios from "axios";
 import { library } from "@fortawesome/fontawesome-svg-core";
 
-import { faTrash, faSignOutAlt, faEdit, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faSignOutAlt, faEdit, faSpinner, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faTrash, faSignOutAlt, faEdit, faSpinner);
+library.add(faTrash, faSignOutAlt, faEdit, faSpinner, faPlusCircle);
 
 export default class App extends Component {
   // creating state indication logged in and rendering it to auth
