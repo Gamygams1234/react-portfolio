@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import ReactHtmlParser from "react-html-parser";
+import BlogFeaturedImage from "../blog/BlogFeaturedImage";
 import axios from "axios";
 
 export default class BlogDetail extends Component {
@@ -31,8 +33,9 @@ export default class BlogDetail extends Component {
       <div className="blog-container">
         <div className="content-container">
           <h1>{title}</h1>
-          <img src={featured_image_url} />
-          <div>{content}</div>
+          {/* checking to see if there is a featured image */}
+          <BlogFeaturedImage img={featured_image_url} />
+          <div className="content">{ReactHtmlParser(content)}</div>
         </div>
       </div>
     );
