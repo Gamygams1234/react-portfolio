@@ -14,6 +14,7 @@ export default class BlogForm extends Component {
       featured_image: "",
     };
     this.handleRichTextEditorChange = this.handleRichTextEditorChange.bind(this);
+    this.featuredImageRef = React.createRef();
   }
 
   handleRichTextEditorChange(content) {
@@ -25,6 +26,9 @@ export default class BlogForm extends Component {
     formData.append("portfolio_blog[title]", this.state.title);
     formData.append("portfolio_blog[blog_status]", this.state.blog_status);
     formData.append("portfolio_blog[content]", this.state.content);
+    if (this.state.featured_image) {
+      formData.append("portfolio_blog[featured_image]", this.state.featured_image);
+    }
 
     return formData;
   };
@@ -33,11 +37,16 @@ export default class BlogForm extends Component {
     axios
       .post("https://gamyburgos.devcamp.space/portfolio/portfolio_blogs", this.buildForm(), { withCredentials: true })
       .then((response) => {
+        if (this.state.featured_image) {
+          this.featuredImageRef.current.dropzone.removeAllFiles();
+        }
         this.setState({
           title: "",
           blog_status: "",
           content: "",
+          featured_image: "",
         });
+
         this.props.handleSuccessfullFormSubmission(response.data.portfolio_blog);
       })
       .catch((error) => {
@@ -83,7 +92,7 @@ export default class BlogForm extends Component {
           <RichTextEditor handleRichTextEditorChange={this.handleRichTextEditorChange} />
         </div>
         <div className="image-uploaders">
-          <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleFeaturedImageDrop()}>
+          <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleFeaturedImageDrop()} ref={this.featuredImageRef}>
             <div className="dz-message">Featured Image</div>
           </DropzoneComponent>
         </div>
