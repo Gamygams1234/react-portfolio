@@ -18,7 +18,16 @@ export default class RichTextEditor extends Component {
   }
 
   uploadFile = (file) => {
-    console.log("upload File", file);
+    return new Promise((resolve, reject) => this.getBase64(file, (data) => resolve({ data: { link: data } })));
+  };
+
+  getBase64 = (file, callback) => {
+    // this will help convert the image to text that can be rendered
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    // the result comes from data as URL
+    reader.onload = () => callback(reader.result);
+    reader.onerror = (error) => {};
   };
   render() {
     return (
