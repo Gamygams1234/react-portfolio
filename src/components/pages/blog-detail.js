@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactHtmlParser from "react-html-parser";
 import BlogFeaturedImage from "../blog/BlogFeaturedImage";
+import BlogForm from "../blog/blog-form";
 import axios from "axios";
 
 export default class BlogDetail extends Component {
@@ -9,6 +10,7 @@ export default class BlogDetail extends Component {
     this.state = {
       currentId: this.props.match.params.slug,
       blogItem: {},
+      editMode: false,
     };
   }
   getBlogItem() {
@@ -26,18 +28,30 @@ export default class BlogDetail extends Component {
   componentDidMount() {
     this.getBlogItem();
   }
+  handleEditClick = () => {
+    console.log("handle edit clicked");
+    this.setState({
+      editMode: true,
+    });
+  };
+
   render() {
     const { title, content, featured_image_url } = this.state.blogItem;
     console.log("currentId", this.state.currentId);
-    return (
-      <div className="blog-container">
-        <div className="content-container">
-          <h1>{title}</h1>
-          {/* checking to see if there is a featured image */}
-          <BlogFeaturedImage img={featured_image_url} />
-          <div className="content">{ReactHtmlParser(content)}</div>
-        </div>
-      </div>
-    );
+    const contentManager = () => {
+      if (this.state.editMode) {
+        return <BlogForm />;
+      } else {
+        return (
+          <div className="content-container">
+            <h1 onClick={this.handleEditClick}>{title}</h1>
+            {/* checking to see if there is a featured image */}
+            <BlogFeaturedImage img={featured_image_url} />
+            <div className="content">{ReactHtmlParser(content)}</div>
+          </div>
+        );
+      }
+    };
+    return <div className="blog-container">{contentManager()}</div>;
   }
 }
