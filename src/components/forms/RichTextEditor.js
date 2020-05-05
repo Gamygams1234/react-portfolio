@@ -16,10 +16,14 @@ export default class RichTextEditor extends Component {
   onEditorStateChange(editorState) {
     this.setState({ editorState: editorState }, this.props.handleRichTextEditorChange(draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))));
   }
+
+  uploadFile = (file) => {
+    console.log("upload File", file);
+  };
   render() {
     return (
       <div>
-        <Editor onEditorStateChange={this.onEditorStateChange} editorState={this.state.editorState} wrapperClassName="demo-wrapper" editorClassName="demo-editor" />
+        <Editor toolbar={{ inline: { inDropdown: true }, list: { inDropdown: true }, testAlign: { inDropdown: true }, link: { inDropdown: true }, inline: { inDropdown: true }, image: { uploadCallback: this.uploadFile, alt: { present: true, mandatory: false }, previewImage: true, inputAccept: "image/gif,image/jpeg,image/jpg,image/png,image/svg" } }} onEditorStateChange={this.onEditorStateChange} editorState={this.state.editorState} wrapperClassName="demo-wrapper" editorClassName="demo-editor" />
       </div>
     );
   }
