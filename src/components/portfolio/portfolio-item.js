@@ -19,23 +19,24 @@ export default class PortfolioItem extends Component {
   render() {
     const { id, description, thumb_image_url, logo_url } = this.props.item;
     return (
-      // when we render, it is this.props in a class component
-      <div className="portfolio-item-wrapper" onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
-        <div
-          className={"portfolio-img-background " + this.state.portfolioItemClass}
-          style={{
-            backgroundImage: "url(" + thumb_image_url + ")",
-          }}
-        />
-        {/*here we pass the style in two sets of curly brackets */}
+      <Link to={`/portfolio/${id}`}>
+        <div className="portfolio-item-wrapper" onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
+          <div
+            className={"portfolio-img-background " + this.state.portfolioItemClass}
+            style={{
+              backgroundImage: "url(" + thumb_image_url + ")",
+            }}
+          />
+          {/*here we pass the style in two sets of curly brackets */}
 
-        <div className="img-text-wrapper">
-          <div className="logo-wrapper">
-            <img src={logo_url} />
+          <div className="img-text-wrapper">
+            <div className="logo-wrapper">
+              <img src={logo_url} />
+            </div>
+            <div className="subtitle">{description}</div>
           </div>
-          <div className="subtitle">{description}</div>
         </div>
-      </div>
+      </Link>
     );
   }
 }
