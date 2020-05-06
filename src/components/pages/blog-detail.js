@@ -34,12 +34,20 @@ export default class BlogDetail extends Component {
     });
   };
 
+  handleFeaturedImageDelete = () => {
+    this.setState({
+      blogItem: {
+        featured_image_url: "",
+      },
+    });
+  };
+
   render() {
     const { title, content, featured_image_url } = this.state.blogItem;
-    console.log("currentId", this.state.currentId);
+
     const contentManager = () => {
       if (this.state.editMode) {
-        return <BlogForm editMode={this.state.editMode} blog={this.state.blogItem} />;
+        return <BlogForm handleFeaturedImageDelete={this.handleFeaturedImageDelete} editMode={this.state.editMode} blog={this.state.blogItem} />;
       } else {
         return (
           <div className="content-container">

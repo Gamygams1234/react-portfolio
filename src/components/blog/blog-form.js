@@ -92,6 +92,16 @@ export default class BlogForm extends Component {
       postUrl: "https://httpbin.org/post",
     };
   };
+  deleteImage = (imageType) => {
+    axios
+      .delete(`https://api.devcamp.space/portfolio/delete-portfolio-blog-image/${this.props.blog.id}?image_type=${imageType}`, { withCredentials: true })
+      .then((response) => {
+        this.props.handleFeaturedImageDelete();
+      })
+      .catch((error) => {
+        console.log("deleteImage error", error);
+      });
+  };
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="blog-form-wrapper">
@@ -103,8 +113,8 @@ export default class BlogForm extends Component {
           <RichTextEditor editMode={this.props.editMode} contentToEdit={this.props.editMode && this.props.blog.content ? this.props.blog.content : null} handleRichTextEditorChange={this.handleRichTextEditorChange} />
         </div>
         <div className="image-uploaders">
-          {this.props.blog.featured_image_url && this.props.editMode ? (
-            <div className="portfolio-manager-image-wrapper">
+          {this.props.editMode && this.props.blog.featured_image_url ? (
+            <div className="image-wrapper">
               <img src={this.props.blog.featured_image_url} />
               <div className="image-removal-link">
                 <a onClick={() => this.deleteImage("featured_image")}>Remove file</a>
