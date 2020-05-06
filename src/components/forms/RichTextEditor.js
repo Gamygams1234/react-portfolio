@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { EditorState, covertToRaw, convertToRaw } from "draft-js";
+import { EditorState, covertToRaw, convertToRaw, ContentState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draftjs";
@@ -13,9 +13,22 @@ export default class RichTextEditor extends Component {
     };
     this.onEditorStateChange = this.onEditorStateChange.bind(this);
   }
-  onEditorStateChange(editorState) {
-    this.setState({ editorState: editorState }, this.props.handleRichTextEditorChange(draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))));
+  componentWillMount() {
+    if (this.props.editMode && this.props.contentToEdit) {
+      // from Draft JS documentation
+      const blocksFromHtml = htmlToDraft(this.props.contentToEdit);
+      const { contentBlocks, entityMap } = blocksFromHtml;
+      const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+      const editorState = EditorState.createWithContent(contentState);
+      this.setState({
+        editorState,
+      });
+    }
   }
+
+  onEditorStateChange = (editorState) => {
+    this.setState({ editorState: editorState }, this.props.handleRichTextEditorChange(draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))));
+  };
 
   uploadFile = (file) => {
     return new Promise((resolve, reject) => this.getBase64(file, (data) => resolve({ data: { link: data } })));

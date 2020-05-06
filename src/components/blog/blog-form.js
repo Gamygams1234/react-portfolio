@@ -100,7 +100,7 @@ export default class BlogForm extends Component {
           <input type="text" onChange={this.handleChange} name="blog_status" placeholder="Blog Status" value={this.state.blog_status} />
         </div>
         <div className="one-column">
-          <RichTextEditor handleRichTextEditorChange={this.handleRichTextEditorChange} />
+          <RichTextEditor editMode={this.props.editMode} contentToEdit={this.props.editMode && this.props.blog.content ? this.props.blog.content : null} handleRichTextEditorChange={this.handleRichTextEditorChange} />
         </div>
         <div className="image-uploaders">
           <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleFeaturedImageDrop()} ref={this.featuredImageRef}>
