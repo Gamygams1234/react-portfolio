@@ -4,7 +4,7 @@ import profilePicture from "../../../static/assets/images/bio/headshot.jpg";
 export default function () {
   return (
     <div className="content-page-wrapper">
-      <div className="left-column">
+      <div className="left-column-about">
         <img src={profilePicture} />
       </div>
       <div className="right-column">
