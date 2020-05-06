@@ -1,0 +1,22 @@
+.content-page-wrapper {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
+  height: calc(100vh - 92px);
+  .left-column {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    img {
+      width: 100%;
+    }
+  }
+  .right-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
