@@ -103,9 +103,18 @@ export default class BlogForm extends Component {
           <RichTextEditor editMode={this.props.editMode} contentToEdit={this.props.editMode && this.props.blog.content ? this.props.blog.content : null} handleRichTextEditorChange={this.handleRichTextEditorChange} />
         </div>
         <div className="image-uploaders">
-          <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleFeaturedImageDrop()} ref={this.featuredImageRef}>
-            <div className="dz-message">Featured Image</div>
-          </DropzoneComponent>
+          {this.props.blog.featured_image_url && this.props.editMode ? (
+            <div className="portfolio-manager-image-wrapper">
+              <img src={this.props.blog.featured_image_url} />
+              <div className="image-removal-link">
+                <a onClick={() => this.deleteImage("featured_image")}>Remove file</a>
+              </div>
+            </div>
+          ) : (
+            <DropzoneComponent config={this.componentConfig()} djsConfig={this.djsConfig()} eventHandlers={this.handleFeaturedImageDrop()} ref={this.featuredImageRef}>
+              <div className="dz-message">Featured Image</div>
+            </DropzoneComponent>
+          )}
         </div>
         <button className="btn">Save</button>
       </form>
