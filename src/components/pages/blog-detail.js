@@ -29,9 +29,12 @@ export default class BlogDetail extends Component {
     this.getBlogItem();
   }
   handleEditClick = () => {
-    this.setState({
-      editMode: true,
-    });
+    // here we are checking to see if we are logged in before we get to edit mode
+    if (this.props.loggedInStatus === "LOGGED_IN") {
+      this.setState({
+        editMode: true,
+      });
+    }
   };
 
   handleFeaturedImageDelete = () => {
