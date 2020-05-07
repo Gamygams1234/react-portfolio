@@ -17,14 +17,14 @@ export default class PortfolioItem extends Component {
     this.setState({ portfolioItemClass: "" });
   }
   render() {
-    const { id, description, thumb_image_url, logo_url } = this.props.item;
+    const { id, description, banner_image_url, logo_url } = this.props.item;
     return (
       <Link to={`/portfolio/${id}`}>
         <div className="portfolio-item-wrapper" onMouseEnter={() => this.handleMouseEnter()} onMouseLeave={() => this.handleMouseLeave()}>
           <div
             className={"portfolio-img-background " + this.state.portfolioItemClass}
             style={{
-              backgroundImage: "url(" + thumb_image_url + ")",
+              backgroundImage: "url(" + banner_image_url + ")",
             }}
           />
           {/*here we pass the style in two sets of curly brackets */}
