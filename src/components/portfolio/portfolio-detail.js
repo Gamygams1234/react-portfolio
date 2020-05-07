@@ -16,7 +16,7 @@ export default class PortfolioDetail extends Component {
         console.log("res", response);
       })
       .catch((error) => {
-        console.log("get porfolioItem error", error);
+        console.log("get porfolioItem error Checking the git ", error);
       });
   };
 
