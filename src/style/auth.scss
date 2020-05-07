@@ -2,6 +2,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: calc(100vh - 84px);
+  .btn {
+    width: 100%;
+  }
 }
 .left-column {
   background-size: cover; // this will make sure our backgroung image fits
@@ -11,4 +14,20 @@
   justify-content: center;
   align-items: center;
   background-color: $offwhite;
+
+  .auth-form-wrapper {
+    @include input-element();
+    @include base-grid();
+    grid-gap: 21px;
+    padding: 42px;
+    .form-group {
+      display: flex;
+
+      svg {
+        font-size: 2em;
+        color: $teal;
+        margin-right: 15px;
+      }
+    }
+  }
 }
