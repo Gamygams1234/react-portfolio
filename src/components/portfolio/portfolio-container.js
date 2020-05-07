@@ -14,21 +14,29 @@ export default class PortfolioContainer extends Component {
     this.handleFilter = this.handleFilter.bind(this);
   }
   handleFilter(filter) {
-    this.setState({
-      data: this.state.data.filter((item) => {
-        return item.category === filter;
-      }),
-    });
+    if (filter === "CLEAR_FILTER") {
+      this.getPortfolioItems();
+    } else {
+      this.getPortfolioItems(filter);
+    }
   }
-  getPortfolioItems() {
+
+  getPortfolioItems(filter = null) {
     axios
       .get("https://gamyburgos.devcamp.space/portfolio/portfolio_items")
       .then((response) => {
-        // handle success
-
-        this.setState({
-          data: response.data.portfolio_items,
-        });
+        console.log(response);
+        if (filter) {
+          this.setState({
+            data: response.data.portfolio_items.filter((item) => {
+              return item.category === filter;
+            }),
+          });
+        } else {
+          this.setState({
+            data: response.data.portfolio_items,
+          });
+        }
       })
       .catch((error) => {
         // handle error
@@ -56,33 +64,43 @@ export default class PortfolioContainer extends Component {
       return <div>Loading...</div>;
     }
     return (
-      <div className="portfolio-items-wrapper">
-        <button
-          className="btn"
-          onClick={() => {
-            this.handleFilter("eCommerce");
-          }}
-        >
-          eCommerce
-        </button>
-        <button
-          className="btn"
-          onClick={() => {
-            this.handleFilter("scheduling");
-          }}
-        >
-          scheduling
-        </button>
-        <button
-          className="btn"
-          onClick={() => {
-            this.handleFilter("enterprise");
-          }}
-        >
-          enterpise
-        </button>
+      <div className="homepage-wrapper">
+        <div className="filter-links">
+          <button
+            className="btn"
+            onClick={() => {
+              this.handleFilter("eCommerce");
+            }}
+          >
+            eCommerce
+          </button>
+          <button
+            className="btn"
+            onClick={() => {
+              this.handleFilter("scheduling");
+            }}
+          >
+            Scheduling
+          </button>
+          <button
+            className="btn"
+            onClick={() => {
+              this.handleFilter("Social Media");
+            }}
+          >
+            Social Media
+          </button>
+          <button
+            className="btn"
+            onClick={() => {
+              this.handleFilter("CLEAR_FILTER");
+            }}
+          >
+            All
+          </button>
+        </div>
         {/*setting up a wrapper for our protfilio items*/}
-        {this.portfolioItems()}
+        <div className="portfolio-items-wrapper">{this.portfolioItems()}</div>
       </div>
     );
   }
