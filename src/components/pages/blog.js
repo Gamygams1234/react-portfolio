@@ -50,7 +50,21 @@ class Blog extends Component {
         console.log("getBlogItems error", error);
       });
   };
-
+  handleDeleteClick = (blog) => {
+    axios
+      .delete(`https://api.devcamp.space/portfolio/portfolio_blogs/${blog.id}`, { withCredentials: true })
+      .then((response) => {
+        this.setState({
+          blogItems: this.state.blogItems.filter((item) => {
+            return item.id !== blog.id;
+          }),
+        });
+        return response.data;
+      })
+      .catch((error) => {
+        console.log("handleDeleteClick error", error);
+      });
+  };
   // this is all vanilla javascript that you can do on any project
   onScroll = (e) => {
     // checking to see if we made it to the end
@@ -76,7 +90,18 @@ class Blog extends Component {
 
   render() {
     const blogRecords = this.state.blogItems.map((blogItem) => {
-      return <BlogItem key={blogItem.id} blogItem={blogItem} />;
+      if (this.props.loggedInStatus === "LOGGED_IN") {
+        return (
+          <div key={blogItem.id} className="admin-blog-wrapper">
+            <BlogItem blogItem={blogItem} />
+            <a className="icon" onClick={() => this.handleDeleteClick(blogItem)}>
+              <FontAwesomeIcon icon="trash" />
+            </a>
+          </div>
+        );
+      } else {
+        return <BlogItem key={blogItem.id} blogItem={blogItem} />;
+      }
     });
     return (
       <div className="blog-container">

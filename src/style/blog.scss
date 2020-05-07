@@ -3,6 +3,21 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  .admin-blog-wrapper {
+    display: flex;
+    justify-content: space-between;
+    .icon {
+      margin-left: 15px;
+      align-self: center;
+      cursor: pointer;
+      color: $teal;
+      font-size: 1.5em;
+      transition: 0.2s ease-in-out;
+      &:hover {
+        color: $warning;
+      }
+    }
+  }
   .new-blog-link {
     position: fixed;
     right: 0;
