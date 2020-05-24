@@ -4,6 +4,10 @@
   .filter-links {
     display: flex;
     justify-content: center;
+    @media screen and (max-width: 650px) {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
     .btn {
       width: 100%;
     }

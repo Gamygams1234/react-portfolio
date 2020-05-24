@@ -39,7 +39,11 @@
   .content-container {
     display: flex;
     flex-direction: column;
-    width: 800px;
+    width: 500px;
+    @media screen and (max-width: 650px) {
+      width: auto;
+    }
+
     a {
       text-decoration: none;
       color: $teal;

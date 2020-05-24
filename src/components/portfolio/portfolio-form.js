@@ -11,7 +11,7 @@ export default class PortfolioForm extends Component {
     this.state = {
       name: "",
       description: "",
-      category: "eCommerce",
+      category: "HTML/CSS",
       position: "",
       url: "",
       thumb_image: "",
@@ -35,7 +35,7 @@ export default class PortfolioForm extends Component {
         id: id,
         name: name || "",
         description: description || "",
-        category: category || "eCommerce",
+        category: category || "HTML/CSS",
         position: position || "",
         url: url || "",
         editMode: true,
@@ -77,7 +77,7 @@ export default class PortfolioForm extends Component {
   handleChange = (e) => {
     // updating the state
     this.setState({
-      [event.target.name]: event.target.value,
+      [e.target.name]: e.target.value,
     });
   };
   handleSubmit = (event) => {
@@ -96,10 +96,23 @@ export default class PortfolioForm extends Component {
         } else {
           this.props.handleNewFormSubmission(response.data.portfolio_item);
         }
+        this.setState({
+          name: "",
+          description: "",
+          category: "HTML/CSS",
+          position: "",
+          url: "",
+          thumb_image: "",
+          banner_image: "",
+          logo: "",
+          editMode: false,
+          apiUrl: "https://gamyburgos.devcamp.space/portfolio/portfolio_items",
+          apiAction: "post",
+        });
         [this.thumbRef, this.bannerRef, this.logoRef].forEach((ref) => {
           ref.current.dropzone.removeAllFiles();
         });
-        this.setState({ name: "", description: "", category: "eCommerce", position: "", url: "", thumb_image: "", banner_image: "", logo: "", editMode: false, apiUrl: "https://gamyburgos.devcamp.space/portfolio/portfolio_items", apiAction: "post" });
+        this.setState({ name: "", description: "", category: "HTML/CSS", position: "", url: "", thumb_image: "", banner_image: "", logo: "", editMode: false, apiUrl: "https://gamyburgos.devcamp.space/portfolio/portfolio_items", apiAction: "post" });
       })
       .catch((error) => {
         console.log("error", error);
@@ -146,9 +159,9 @@ export default class PortfolioForm extends Component {
           <input type="text" name="position" placeholder="Position" value={this.state.position} onChange={this.handleChange} />
           <select className="select-element" type="text" name="category" placeholder="Category" value={this.state.category} onChange={this.handleChange}>
             {/* making a select tag with the options */}
-            <option value="eCommerce">eCommerce</option>
-            <option value="Scheduling">Scheduling</option>
-            <option value="Enterprise">Enterprise</option>
+            <option value="HTML/CSS">HTML/CSS</option>
+            <option value="Javascript">Javascript</option>
+            <option value=" PHP/MySQL"> PHP/MySQL</option>
           </select>
         </div>
         <div className="one-column">

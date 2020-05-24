@@ -25,7 +25,6 @@ export default class PortfolioContainer extends Component {
     axios
       .get("https://gamyburgos.devcamp.space/portfolio/portfolio_items")
       .then((response) => {
-        console.log(response);
         if (filter) {
           this.setState({
             data: response.data.portfolio_items.filter((item) => {
@@ -69,26 +68,26 @@ export default class PortfolioContainer extends Component {
           <button
             className="btn"
             onClick={() => {
-              this.handleFilter("eCommerce");
+              this.handleFilter("HTML/CSS");
             }}
           >
-            eCommerce
+            HTML/CSS
           </button>
           <button
             className="btn"
             onClick={() => {
-              this.handleFilter("scheduling");
+              this.handleFilter("Javascript");
             }}
           >
-            Scheduling
+            Javascript
           </button>
           <button
             className="btn"
             onClick={() => {
-              this.handleFilter("Social Media");
+              this.handleFilter("PHP/MySQL");
             }}
           >
-            Social Media
+            PHP/MySQL
           </button>
           <button
             className="btn"

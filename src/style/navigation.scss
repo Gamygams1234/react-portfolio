@@ -2,12 +2,23 @@
   display: flex;
   justify-content: space-between;
   padding: 30px;
+  @media screen and (max-width: 500px) {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
   .right-side {
+    @media screen and (max-width: 500px) {
+      display: grid;
+      grid-row: 1;
+      justify-content: center;
+    }
     a {
       margin-left: 15px;
       cursor: pointer;
       color: $teal;
       transition: 0.2s ease-in-out;
+
       &:hover {
         color: $darkteal;
       }
@@ -16,6 +27,10 @@
 
   .left-side {
     display: flex;
+    @media screen and (max-width: 500px) {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
   }
 
   .nav-link-wrapper {
@@ -25,6 +40,12 @@
     margin-right: 20px;
     text-transform: uppercase;
     font-size: 0.9rem;
+    @media screen and (max-width: 500px) {
+      display: flex;
+      justify-content: center;
+      height: 33px;
+      margin-right: 0px;
+    }
 
     a {
       display: block; // making the display block so I can have control over it
@@ -33,12 +54,13 @@
       text-decoration: none;
       &:hover {
         color: black;
-        border-bottom: 1px solid black;
       }
-    }
-
-    &:hover {
-      border-bottom: 1px solid black;
+      @media screen and (min-width: 500px) {
+        &:hover {
+          color: black;
+          border-bottom: 1px solid black;
+        }
+      }
     }
 
     .nav-link-active {
