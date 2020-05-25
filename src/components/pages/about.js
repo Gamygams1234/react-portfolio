@@ -7,10 +7,7 @@ export default function () {
       <div className="left-column-about">
         <img src={profilePicture} />
       </div>
-      <div className="right-column">
-        Maecenas faucibus mollis interdum. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Sed posuere consectetur est at lobortis. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus varius blandit sit amet non magna. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus. Donec sed odio dui. Cras mattis consectetur purus sit amet fermentum. Etiam porta sem malesuada magna mollis euismod. Nulla vitae elit libero, a pharetra augue. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam quis risus eget
-        urna mollis ornare vel eu leo. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Vestibulum id ligula porta felis euismod semper.
-      </div>
+      <div className="right-column">Hey, my name's Gamaliel Burgos. I live in Riverside, California and am currently building web applications using different technologies such as React, Python, Javascript, SQL, and other technologies . My first bit of exposure to web development was through Bottega Coding School in 2019. In the course, we started with basic HTML/CSS, and continued to become proficient in both front and back end coding. I like to think that I've learned a lot since then! Check out some of my work, and feel free to shoot me an email if you'd like to work together.</div>
     </div>
   );
 }
