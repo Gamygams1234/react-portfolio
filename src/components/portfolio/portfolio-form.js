@@ -161,7 +161,7 @@ export default class PortfolioForm extends Component {
             {/* making a select tag with the options */}
             <option value="HTML/CSS">HTML/CSS</option>
             <option value="Javascript">Javascript</option>
-            <option value=" PHP/MySQL"> PHP/MySQL</option>
+            <option value="PHP/MySQL"> PHP/MySQL</option>
           </select>
         </div>
         <div className="one-column">

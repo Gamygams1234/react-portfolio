@@ -84,10 +84,10 @@ export default class PortfolioContainer extends Component {
           <button
             className="btn"
             onClick={() => {
-              this.handleFilter("PHP/MySQL");
+              this.handleFilter("React/Redux");
             }}
           >
-            PHP/MySQL
+            React/Redux
           </button>
           <button
             className="btn"
